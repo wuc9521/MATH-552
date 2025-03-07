@@ -1,0 +1,31 @@
+\documentclass[12pt]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry} 
+\usepackage{setspace}             
+\input{packages.tex}
+\input{macros.tex}
+
+\title{What is homotopical about Homotopy Type Theory?}
+\author{Chentian Wu}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+  This paper explores the profound connection between homotopy theory and dependent type theory that gave rise to Homotopy Type Theory (HoTT~\cite{hottbook}). We investigate how the homotopical interpretation transforms our understanding of type theory, where types are viewed not merely as sets but as topological spaces up to homotopy equivalence. By examining the unexpected isomorphism between Martin-\Lof's identity types and path spaces, we reveal how this correspondence naturally led to the univalence axiom—a principle with no precedent in classical foundations. We analyze specific constructions in HoTT that directly mirror algebraic topology concepts, including higher inductive types as synthetic representations of cell complexes. This exploration illuminates why homotopy—rather than other mathematical structures—offered the perfect framework for resolving long-standing issues in intensional type theory while simultaneously providing new foundations for mathematics that naturally accommodate higher-dimensional structures.
+\end{abstract}
+
+\tableofcontents
+\input{sections/1-intro.tex}
+\input{sections/2-hott.tex}
+\input{sections/3-univ.tex}
+\input{sections/4-hit.tex}
+\input{sections/5-comp.tex}
+\input{sections/6-answer.tex}
+\input{sections/7-conc.tex}
+
+\bibliographystyle{amsplain}
+\bibliography{refs}
+
+\end{document}

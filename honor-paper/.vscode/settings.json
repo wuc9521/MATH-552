@@ -1,0 +1,26 @@
+{
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "xelatex -> bibtex -> xelatex*2",
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
+            ]
+        },
+        {
+            "name": "xeflatex*2",
+            "tools": [
+                "xelatex",
+                "xelatex"
+            ]
+        },
+        {
+            "name": "latexmk",
+            "tools": [
+                "latexmk"
+            ]
+        }
+    ],
+}
