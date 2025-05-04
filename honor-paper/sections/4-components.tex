@@ -1,0 +1,190 @@
+%========================================================
+\section{Key Homotopic Ingredients of HoTT}\label{sec:components}
+
+In this section we are going to analyze five important \emph{synthetic}\footnote{``Synthetic'' (in HoTT) refers to reasoning about spaces and paths directly within type theory without explicitly constructing their underlying topological or set-theoretic models.} ingredients of homotopy in HoTT.
+While there are many more advanced aspects to this topic, to the best of my knowledge from MATH~552, these are the key concepts I've been able to properly understand (given time constraints).
+
+\subsection{Paths as Homotopies and Covering Spaces}\label{sec:paths}
+Given a type \(A\) and points \(a,b:A\), the identity type
+\(\Paths_A(a,b)\DefEq\Id_A(a,b)\) is interpreted homotopically as the
+space of paths connecting \(a\) to \(b\).
+Repeating the identity-type construction endows every type with an entire
+tower of higher path spaces \(\Paths_A^{n}(a,b)\), and the coherence laws of
+identity establish an \(\Inf\)-groupoid structure.
+In classical language this means that reflexivity, symmetry, transitivity,
+and their higher analogues are not separate axioms but canonical
+operations internal to \(\U\).
+
+A basic but instructive illustration is the circle \(S^1\).  
+Presenting \(S^1\) as a higher inductive type with a single point constructor \(\Base\) and a loop constructor
+\(\Loop:\Paths_{S^1}(\Base,\Base)\) already forces the entire set of
+homotopy classes of maps out of the circle to satisfy the desired
+universal property; no appeal to piecewise linear charts or CW
+structures is necessary.  In this way HoTT replaces analytic path
+concatenation by the purely syntactic operation of transitivity in
+\(\Id\)-types.
+
+A dependent type \(P:A\to\U\) then behaves as a fibration whose total
+space is \(\Sum_{x:A}P(x)\).  The canonical projection
+\(\pi:\Sum_{x:A}P(x)\to A\) mirrors a covering map in topology.  The
+\emph{path induction} principle asserts that to define data depending
+on an arbitrary path it suffices to specify the case of the
+trivial path \(\Refl_a\); this ``contracts the interval'' and yields the
+synthetic counterpart of the homotopy lifting property.  The induced
+transport map
+\[
+  \Transport^{P}_{q}:P(b_0)\longrightarrow P(b_1)\qquad(q:\Paths_B(b_0,b_1))
+\]
+is formally unique and automatically functorial, thus reproducing the
+monodromy of a covering space without explicit reference to
+topological microstructure.
+
+\subsection{\texorpdfstring{$\Pi$}{Π}-Types as Sections of Fibrations}\label{sec:fibrations}
+Where topology studies continuous sections of a fibration
+\(\pi:E\to A\), type theory studies terms of the dependent function
+type \(\Prod_{x:A}P(x)\).  A term
+\(f:\Prod_{x:A}P(x)\) canonically determines a section
+\(s:A\to\Sum_{x:A}P(x)\) by the rule \(s(x)\DefEq(x,f(x))\), and the
+typing judgement \(\mathsf{ap}_{\pi}(f(x))=\Refl_x\) is literally the
+equation \(\pi\circ s=\Id_A\) transcribed into the internal language.
+Consequently the classical slogan ``sections are homotopies'' acquires a
+formal meaning: \(\Pi\)-types serve simultaneously as spaces of
+global elements and as witnesses of path-based coherence.
+
+\begin{definition}
+  A dependent map \(f:\Prod_{x:A}P(x)\) is called \emph{constant up to
+    homotopy} if for all \(x,y:A\) there exists a path
+  \(p:\Paths_{P(y)}(f(x\mathrel{=}y),f(y))\) whose projection onto \(A\)
+  is \(\Refl_y\).  Constant maps in this sense correspond to \(\pi_1\)-invariant
+  sections of a covering space in the classical setting.
+\end{definition}
+
+This perspective clarifies why \(\Pi\)-types satisfy functional
+extensionality whenever univalence holds: two sections are equal just
+when they are pointwise connected by a path, precisely the condition
+under which they represent the same global section.
+
+\subsection{Equivalences and the Universal Cover}\label{sec:univalence}
+A map \(f:A\to B\) is an \emph{equivalence} if each of its fibres
+\(\Sum_{b:B}\Paths_B(f(a),b)\) is contractible.  Univalence enhances
+this notion by stipulating that the type \((A\simeq B)\) of
+equivalences coincides with the identity type \((A=B)\).  Equivalences
+are therefore paths in \(\U\), so that ``moving along'' a family of
+equivalences simply is transport in \(\U\).
+
+\begin{theorem}
+  \label{thm:omegaS1}
+  The loop space of the circle satisfies \(\Omega S^1\simeq\Z\).
+\end{theorem}
+
+\begin{proof}[Sketch]
+  Define \(\Code:S^1\to\U\) by \(\Code(\Base)\DefEq\Z\) and
+  \(\Transport^{\Code}(\Loop)\DefEq\Suc\).  The total space
+  \(\Sum_{x:S^1}\Code(x)\) carries a projection with homotopy-lifting
+  behaviour identical to the exponential map \(\exp:\R\to S^1\).
+  Contractibility of every fibre implies that paths at \(\Base\) are in
+  bijective correspondence with integers, yielding the stated
+  equivalence without leaving type theory.
+\end{proof}
+
+Because the argument never mentions open covers or local triviality,
+it demonstrates that HoTT faithfully reproduces covering-space
+phenomena using purely synthetic tools.
+
+\subsection{Lifting Properties and Transport}\label{sec:lifting}
+In classical algebraic topology the homotopy lifting property (HLP)
+says that a covering map \(p:E\to B\) allows every homotopy
+\(H:X\times[0,1]\to B\) to be lifted uniquely once its restriction to
+\(X\times\{0\}\) is fixed.  HoTT wraps the entire content of HLP into
+the functoriality and higher coherences of \(\Transport\).
+
+Let \(q:\Paths_B(b_0,b_1)\) and \(e_0:P(b_0)\).
+The dependent elimination rule for identity types produces the unique term \(\Transport^{P}_{q}(e_0):P(b_1)\).
+Naturality of \(\Transport\) under path concatenation encodes the uniqueness clause of path lifting, 
+while the computation rule for \(\Refl_{b_0}\) encodes the starting-point condition.
+Higher paths between paths in \(B\) lift to dependent paths between the
+corresponding transport maps, providing the synthetic substitute for
+homotopy lifting.
+Hence the entire monodromy representation
+\(\pi_1(B)\to\mathsf{Aut}(P(b_0))\) can be recovered from first
+principles of dependent type theory.
+
+\subsection{Free Groups and the Van Kampen Theorem}\label{sec:vankampen}
+The Seifert-Van Kampen theorem (SVK) computes the fundamental group of
+a union from the fundamental groups of its parts and their
+intersection,
+\[
+  \pi_1(U\cup V)\simeq\pi_1(U)*_{\pi_1(U\cap V)}\pi_1(V).
+\]
+HoTT reconstructs SVK synthetically via pushouts of higher inductive
+types.  Suppose \(X\) is the pushout of maps \(i:W\to U\) and
+\(j:W\to V\).  Because pushouts in HoTT satisfy the same universal
+property as in homotopy theory, mapping out of \(X\) into any other
+type induces an equivalence between dependent function spaces
+mirroring the amalgamated free product above.
+
+\begin{example}[Wedge of two circles]
+  Present \(S^1\vee S^1\) by two point constructors
+  \(\Base_1,\Base_2\) and two loop constructors \(\Loop_1,\Loop_2\).
+  Any map from \(S^1\vee S^1\) into a group-valued Eilenberg–MacLane
+  space is completely specified by the images of \(\Loop_1\) and
+  \(\Loop_2\), and the concatenation law for loops translates into the
+  group law in the free product \(\Z*\Z\).  Path induction formalizes
+  this reasoning, yielding a direct proof of
+  \(\pi_1(S^1\vee S^1)\simeq\Z*\Z\) internal to HoTT.
+\end{example}
+
+The synthetic route not only avoids piecewise-linear approximations but
+also produces computational content: the proof yields an explicit
+algorithm extracting normal forms of words in \(\pi_1(S^1\vee S^1)\).
+
+\subsection{Fundamental Group Action via Deck Transformations}\label{sec:deck}
+Let \(p:\tilde X\to X\) be a universal cover.  The group
+\(\Deck(\tilde X)\) of deck transformations consists of those
+self-equivalences of \(\tilde X\) that commute with \(p\).
+In HoTT the covering is a dependent type
+\(\Code:X\to\U\); its total space
+\(\Sum_{x:X}\Code(x)\) inherits an internal \(\Deck\)-action from
+transport.
+
+\begin{theorem}
+  For \(X=S^1\) and \(\Code\) as in Theorem~\ref{thm:omegaS1},
+  \(\Deck\bigl(\Sum_{x:S^1}\Code(x)\bigr)\simeq\Z\).
+\end{theorem}
+
+\begin{proof}[Idea]
+  Any integer \(n:\Z\) gives an equivalence
+  \(f_n:(x,k)\mapsto(x,k+n)\), and
+  \(\Transport^{\Code}(\Loop^{n})=\lambda k.~k+n\) shows that these
+  exhaust all equivalences commuting with the projection.  Functoriality
+  of \(\Transport\) yields a group homomorphism \(\Z\to\Deck\) that is
+  easily seen to be inverse to the map sending a deck transformation to
+  its action on the distinguished fibre over \(\Base\).
+\end{proof}
+
+Because deck transformations are equivalences in the sense of
+univalence, their classification by \(\Z\) is witnessed by a path in
+\(\U\), once again turning a geometric identification into an internal
+equality.
+
+\subsection{Synthesis: HoTT as Synthetic Homotopy Theory}\label{sec:synthesis}
+Collecting the preceding themes, one may characterise HoTT as a
+framework where traditional homotopy theory is recovered from the
+interaction of four primitive notions:
+
+\medskip
+\noindent
+\emph{(i) identity types} model paths and higher paths;
+\emph{(ii) dependent types} encode fibrations and covering spaces;
+\emph{(iii) higher inductive types} allow defining spaces by specifying both points and paths (e.g., attaching cells or gluing components), which directly encodes theorems like Seifert-van Kampen within type theory.
+\emph{(iv) univalence} unifies equivalence with identity, letting group
+actions and deck transformations be expressed by transport.
+
+\medskip
+\noindent
+Because these ingredients are computationally meaningful, classical
+homotopical arguments admit direct formalization in proof assistants
+such as \textsc{Agda}~\cite{Agda}, \textsc{Coq-HoTT}~\cite{bauer2016hottlibraryformalizationhomotopy}, or \textsc{Lean}~\cite{10.1007/978-3-030-79876-5_37}.  The cost
+of analytic overhead is thus exchanged for the benefit of executable
+proofs whose correctness rests solely on the constructive core of
+type theory.

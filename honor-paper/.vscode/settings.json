@@ -1,19 +1,19 @@
 {
     "latex-workshop.latex.recipes": [
         {
-            "name": "xelatex -> bibtex -> xelatex*2",
+            "name": "pdflatex -> bibtex -> pdflatex*2",
             "tools": [
-                "xelatex",
+                "pdflatex",
                 "bibtex",
-                "xelatex",
-                "xelatex"
+                "pdflatex",
+                "pdflatex"
             ]
         },
         {
-            "name": "xeflatex*2",
+            "name": "pdflatex*2",
             "tools": [
-                "xelatex",
-                "xelatex"
+                "pdflatex",
+                "pdflatex"
             ]
         },
         {
@@ -23,4 +23,12 @@
             ]
         }
     ],
+    "cSpell.customDictionaries": {
+        "custom-dictionary-workspace": {
+            "name": "custom-dictionary-workspace",
+            "path": "${workspaceFolder:honor-paper}/.cspell/custom-dictionary-workspace.txt",
+            "addWords": true,
+            "scope": "workspace"
+        }
+    },
 }

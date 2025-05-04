@@ -1,0 +1,2 @@
+- [ ] 阅读[CH-correspondence](https://www.cs.cornell.edu/courses/cs6110/2023sp/lectures/lec28.pdf), 回顾构造主义逻辑的概念
+- [ ] 了解纤维丛的概念.

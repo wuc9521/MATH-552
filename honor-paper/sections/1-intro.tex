@@ -1,4 +1,14 @@
-\section{Introduction to Type Theory}\label{sec:tt}
+\section{Why Homotopy inside Type Theory?}\label{sec:intro}
 
-% HoTT 在数学中是什么地位
+Homotopy Type Theory (HoTT) merges two seemingly disparate fields: the logical rigor of type theory and the geometric intuition of homotopy theory. To appreciate its significance, we begin by contextualizing its foundations.
 
+\emph{Type Theory} formalizes mathematics through a computational lens. In this framework, propositions are represented as \emph{types}, and proofs as \emph{terms} inhabiting those types. For instance, the statement ``2 is even'' corresponds to a type \(\textsf{Even}(2)\), and a proof of this statement is a term \(t : \textsf{Even}(2)\). 
+\emph{Dependent Type Theory} extends this idea by allowing types to depend on terms: if \(A\) is a type and \(B(x)\) is a type for each \(x : A\), the dependent product type \(\Prod_{x:A} B(x)\) encodes universal quantification (``for all \(x : A\), \(B(x)\) holds''). 
+This mechanism underpins modern proof assistants like Coq~\cite{bauer2016hottlibraryformalizationhomotopy} and Agda~\cite{Agda}. 
+However, traditional type theory treats equality simplistically—terms \(a\) and \(b\) are either judgmentally equal (\(a \DefEq b\)) or not, discarding any higher-dimensional structure behind why they are equal.
+
+\emph{Homotopy Theory}, on the other hand, studies spaces through continuous deformations: paths between points, homotopies between paths, and so on. Vladimir Voevodsky’s groundbreaking insight was to reinterpret types as spaces, terms as points, and equality proofs \(p : a = b\) as paths from \(a\) to \(b\).
+HoTT elevates equality to a first-class geometric notion, preserving not just whether two terms are equal but how they are equal.
+For example, two programs proven equal in HoTT may follow distinct computational paths, analogous to different routes connecting the same endpoints.
+
+The fusion of these ideas crystallized with Hofmann and Streicher’s 1994 groupoid model and Voevodsky’s later contributions: the \emph{univalence axiom} (equating equivalent types) and \emph{higher inductive types}~\cite{hottbook} (defining spaces by specifying points and paths). Together, they enable HoTT to internalize homotopy-theoretic concepts directly into type theory. For computer scientists, this enriches program verification with geometric reasoning; for mathematicians, it offers a language where proofs are both human-readable and machine-checkable.

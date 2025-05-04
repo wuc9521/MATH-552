@@ -1,0 +1,119 @@
+%========================================================
+\section{Martin-\Lof's Dependent Type Theory: A Topological Lens}\label{sec:mltt}
+
+Modern homotopy type theory rests on three structural features of
+Martin-\Lof\ dependent type theory—\emph{universes},
+\emph{dependent types}, and \emph{identity types}.  Interpreting each
+through a geometric lens reveals how the syntax of proofs encodes
+classical homotopy theoretic ideas.
+
+\subsection{Universes and Type Families as Stratified Spaces}
+To quantify over types without reproducing Russell-style paradoxes
+Martin-\Lof\ introduced an ascending hierarchy
+\[
+    \U_{0} : \U_{1} : \U_{2} : \cdots,
+\]
+where every level \(\U_{i}\) itself lives in the next, a property
+called \emph{cumulativity}.
+We can notice the same pattern when we are assembling a CW-complex:
+the \(n\)-skeleton depends only on cells attached in lower dimensions,
+yet remains a subspace of the completed object.
+Thus each universe operates like a skeleton that supports all types—and hence all spaces—constructed so far,
+while leaving room to adjoin further ``cells'' at the next stage.
+
+Given a base type \(A\) a \emph{type family} \(B:A\to\U\) assigns to
+every point \(x:A\) a fibre \(B(x)\).  Topologically one recognises
+the assignment as a fibration \(p:\Sum_{x:A}B(x)\to A\) whose
+total space is the \(\Sigma\)-type \(\Sum_{x:A}B(x)\) and whose fibre
+over \(x\) is literally \(B(x)\).  When \(B\) is the constant function
+\(\lambda(x:A).~C\) the fibration becomes trivial,
+\(A\times C\xrightarrow{\;\pi_{1}\;}A\); when \(B\) varies non-trivially
+one obtains twisted bundles, covering spaces, or more exotic
+constructions such as local systems of higher groupoids.
+
+\subsection{Dependent Types as Continuous Constructions}
+\begin{definition}[$\Pi$-types as Sections]\label{def:dep-func-type}
+    Given a family \(B:A\to\U\) the dependent function
+    type \(\Prod_{(x:A)}B(x)\) consists of terms that pick a point
+    \(f(x):B(x)\) \emph{continuously} in \(x\).  Equivalently a term
+    \(f\) determines a section \(s:A\to\Sum_{x:A}B(x)\) via
+    \(s(x)\DefEq(x,f(x))\), and the definitional equality
+    \(\pi\circ s=\Id_{A}\) reads ``\(s\) is a genuine section'' after
+    projection.
+\end{definition}
+
+From a logical standpoint \(\Pi\)-types internalize universal
+quantification: the judgment \(t:\Prod_{x:A}B(x)\) is a constructive
+proof of ``for every \(x\) we have \(B(x)\)''.  From a homotopical
+standpoint sections detect whether a bundle admits global trivializing
+data, a theme that resurfaces when \(\Pi\)-types are used to model
+parallel transport and connection forms.
+
+\begin{definition}[$\Sigma$-types as Total Spaces]\label{def:dep-pair-type}
+    Dually, the dependent pair type \(\Sum_{(x:A)}B(x)\) represents the
+    space obtained by \emph{gluing} all fibres together.  A point
+    \((a,b):\Sum_{x:A}B(x)\) simultaneously witnesses the existence of
+    \(a:A\) and a dependent element \(b:B(a)\); it therefore embodies the
+    constructive content of the existential quantifier.  In topology the
+    same ordered pair marks a geometric point lying over \(a\) in the
+    total space of the fibration.
+\end{definition}
+
+Because \(\Sigma\) and \(\Pi\) are adjoint
+(yes, by this we mean adjunctions in category theory)
+in an appropriate sense,
+one already glimpses a categorical formulation of fibre bundles:
+sections are right adjoints to projection, while total-space formation
+is left adjoint.
+
+\subsection{Identity Types as Path Spaces}
+The conceptual breakthrough of HoTT is to interpret propositional equality as a space of paths in the topological sense.
+For two terms \(a,b:A\) the identity type \(\Id_{A}(a,b)\) carries as inhabitants the paths from \(a\) to \(b\);
+the canonical constructor \(\Refl_{a}:\Id_{A}(a,a)\) is the constant path.  
+Two radically different equalities coexist:
+
+\begin{table}[htbp]
+    \begin{tabularx}
+        {\textwidth}
+        {>{\raggedright\arraybackslash}p{0.5\textwidth}>{\raggedright\arraybackslash}p{0.5\textwidth}}
+        \toprule
+        \(\displaystyle a\equiv b:A\)                    & \(\displaystyle p:\Id_{A}(a,b)\) \\
+        \midrule
+        judgmental, enforced by definitional computation &
+        propositional, a geometric path that may vary                                       \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+Judgmental (or definitional) equality corresponds to syntactic normalization, 
+whereas propositional equality admits many distinct witnesses; 
+the latter is where homotopy becomes useful.
+
+\subsection{Path Induction - Contracting the Interval}
+Every identity type is governed by the \emph{path induction} (or
+\(\mathsf{J}\)) rule: to prove a property \(C\) of arbitrary paths it
+suffices to prove it for the trivial path.  Formally, given a family
+\(C:\Prod_{x,y:A}\Id_{A}(x,y)\to\U\) and a term
+\(d:\Prod_{x:A}C(x,x,\Refl_{x})\) there exists a function
+\[
+    \mathsf{J}(d):\Prod_{x,y:A}\Prod_{p:\Id_{A}(x,y)}C(x,y,p),
+\]
+unique up to definitional equality.  From a geometric vantage point
+path induction says that the unit interval contracts onto a point, so
+any construction that is homotopy-invariant over the interval already
+follows from its value at the constant path.
+
+\subsection{A First Glimpse of Homotopy}\label{subsec:first-homotopy}
+Suppose \(p,q:\Id_{A}(a,b)\) are two non-identical proofs of equality.
+They materialize as distinct paths between \(a\) and \(b\).
+Applying identity types once more,
+\(\Id_{\Id_{A}(a,b)}(p,q)\) is the type of homotopies \(p\Rightarrow q\),
+and iterating the process generates a tower of higher paths whose
+globular structure equips every type with an \(\Inf\)-groupoid of its
+points, paths, homotopies, and so on.  Grothendieck envisioned such
+structures as the language in which algebraic topology should be
+carried out; in HoTT they arise automatically from the basic rules of
+type formation and path induction.
+
+So far, we have now reinterpreted the building blocks of Martin-\Lof\ theory — universes, dependent types, identity types, and path induction --- through geometry.  
+Table~\ref{tab:hott-dict} summarizes the interpretation of Type Theory in Logic and Topology.

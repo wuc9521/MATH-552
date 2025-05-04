@@ -1,7 +1,4 @@
 \documentclass[12pt]{amsart}
-\usepackage[T1]{fontenc}
-\usepackage[margin=1in]{geometry} 
-\usepackage{setspace}             
 \input{packages.tex}
 \input{macros.tex}
 
@@ -13,19 +10,17 @@
 \maketitle
 
 \begin{abstract}
-  % This paper explores the profound connection between homotopy theory and dependent type theory that gave rise to Homotopy Type Theory (HoTT~\cite{hottbook}). We investigate how the homotopical interpretation transforms our understanding of type theory, where types are viewed not merely as sets but as topological spaces up to homotopy equivalence. By examining the unexpected isomorphism between Martin-\Lof's identity types and path spaces, we reveal how this correspondence naturally led to the univalence axiom—a principle with no precedent in classical foundations. We analyze specific constructions in HoTT that directly mirror algebraic topology concepts, including higher inductive types as synthetic representations of cell complexes. This exploration illuminates why homotopy—rather than other mathematical structures—offered the perfect framework for resolving long-standing issues in intensional type theory while simultaneously providing new foundations for mathematics that naturally accommodate higher-dimensional structures.
-  The introduction of homotopy theory into type theory was firsyly mentioned in the  1994 paper~\cite{hofmann1994groupoid} of Martin Hofmann and Thomas Streicher.
-  In this paper, I'll give a brief answer to the question: ``What's homotopical about Homotopy Type Theory''.
-  I'll firstly give a introduction of Martin-\Lof's dependent type theory, which is the mathematical background (or object) that we care about in the context of HoTT.
-  After that, I'll give a correspondence of common concepts in homotopy theory and HoTT.
-  % Homotopy type theory is (among other things) a foundational language for mathematics, i.e., an alternative to Zermelo–Fraenkel set theory.
+  \input{sections/0-abs.tex}
 \end{abstract}
 
 \tableofcontents
+
 \input{sections/1-intro.tex}
-\input{sections/2-martin-lof.tex}
-\input{sections/3-homotopy.tex}
-\input{sections/4-conc.tex}
+\input{sections/2-mltt.tex}
+\input{sections/3-hott-dict.tex}
+\input{sections/4-components.tex}
+\input{sections/5-models.tex}
+\input{sections/6-conc.tex}
 
 \bibliographystyle{amsplain}
 \bibliography{refs}

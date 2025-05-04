@@ -1,0 +1,32 @@
+\begin{table}[htbp]
+    % \centering
+    \begin{tabularx}
+        {\textwidth}
+        {>{\raggedright\arraybackslash}p{0.25\textwidth}>{\raggedright\arraybackslash}p{0.37\textwidth}>{\raggedright\arraybackslash}p{0.37\textwidth}}
+        \toprule
+        \textbf{Type Theory}    & \textbf{Logic}                                  & \textbf{Homotopy Theory}                                 \\
+        \midrule
+        $A:\U$                  & a proposition $A$                               & a topological space $A$                                  \\
+        $a:A$                   & a proof $a$ of proposition $A$                  & a point $a$ in space $A$                                 \\
+        $A\to B$                & $A\Rightarrow B$ (implication)                  & a continuous map $A\to B$                                \\
+        $P : A \to \U$          & a predicate $P(x)$ for each $x:A$               & a fibration $P$ over $A$ with fiber $P(x)$ at each $x:A$ \\
+        $\Prod_{x:A}P(x)$       & $\forall x:A.P(x)$ (universal quantification)   & space of continuous sections of fibration $P$            \\
+        $\Sum_{x:A}P(x)$        & $\exists x:A.P(x)$ (existential quantification) & total space of fibration $P$                             \\
+        $A\times B$             & $A\land B$ (conjunction)                        & the product space $A\times B$                            \\
+        $A+ B$                  & $A\lor B$ (disjunction)                         & the disjoint union $A\sqcup B$                           \\
+        $p:\Id_A(a,b)$          & $p$ is a proof of the equality of $a$ and $b$   & $p$ is a path from $a$ to $b$ in space $A$               \\
+        $\Refl_a : \Id_A(a,a)$  & the reflexivity of equality at $a$              & the constant path at point $a$                           \\
+        $\One$                  & $\True$ (true proposition)                      & contractible space                                       \\
+        $\Zero$                 & $\False$ (false proposition)                    & empty space                                              \\
+        $\Prop$                 & propositions (0-truncated types)                & spaces with at most one path between any two points      \\
+        $\Set$                  & sets (1-truncated types)                        & spaces with contractible path spaces                     \\
+        $n$-truncated type      & proposition up to level $n$                     & space with trivial homotopy groups above level $n$       \\
+        function extensionality & functions equal if equal on all inputs          & homotopy between functions                               \\
+        univalence              & isomorphic types are equal                      & equivalent spaces are equal                              \\
+        higher inductive type   & inductive definition with path constructors     & space with specified paths and higher cells              \\
+        \bottomrule
+    \end{tabularx}
+    \caption{The HoTT translation dictionary (merged from~\cite{rijke2022introductionhomotopytypetheory, wei2024synthetichomotopytheory}).}
+    \label{tab:hott-dict}
+\end{table}
+
