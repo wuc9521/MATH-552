@@ -1,9 +1,12 @@
 \section{Semantic Models at a Glance}\label{sec:models}
 
-The consistency of HoTT rests on mathematical models that bridge its syntax with concrete geometric or computational structures. Two models stand out for their philosophical and practical implications.  
+The consistency of HoTT rests on mathematical models that bridge its syntax with concrete geometric or computational structures. 
+Two models stand out for their philosophical and practical implications.  
 
-The \emph{Kan simplicial set model} interprets types as spaces built from simplices—higher-dimensional analogs of triangles and tetrahedrons. This model validates univalence by treating type equivalences as homotopy equivalences. However, it lacks computational rules for paths: while it guarantees the existence of a path \(a = b\), it does not specify how to construct or compute it.  
+The Kan Simplicial Set Model~\cite{kan1955abstract} interprets types as spaces built from simplices—higher-dimensional analogs of triangles and tetrahedrons. This model validates univalence by treating type equivalences as homotopy equivalences. However, it lacks computational rules for paths: while it guarantees the existence of a path \(a = b\), it does not specify how to construct or compute it.  
 
-A more constructive approach is offered by \emph{cubical type theory}, pioneered by Bezem, Coquand, and Huber (2014). This model introduces an \emph{interval object} \(\mathbb{I}\) (representing a continuum from 0 to 1) and \emph{connection operations} to glue higher-dimensional cubes. Here, paths become computable functions over \(\mathbb{I}\). For instance, the loop \(\textsf{loop} : S^1\) in Cubical Agda can be evaluated as a concrete sequence of interval manipulations. This model not only justifies univalence constructively but also enables algorithms for normalizing higher-dimensional paths, as demonstrated in our analysis of \(\pi_1(S^1)\) in Section~\ref{sec:components}.  
+A more constructive approach is offered by Cubical Type Theory~\cite{cohen2016cubicaltypetheoryconstructive}. 
+This model introduces an \emph{interval object} \(\mathbb{I}\) (representing a continuum from 0 to 1) and \emph{connection operations} to glue higher-dimensional cubes. 
+Here, paths become computable functions over \(\mathbb{I}\). For instance, the loop \(\textsf{loop} : S^1\) in Cubical Agda can be evaluated as a concrete sequence of interval manipulations. This model not only justifies univalence constructively but also enables algorithms for normalizing higher-dimensional paths, as demonstrated in our analysis of \(\pi_1(S^1)\) in Section~\ref{sec:components}.  
 
 These models are not mere abstractions. They ground HoTT's synthetic reasoning in computation: when we assert \(\pi_1(S^1) \simeq \mathbb{Z}\), the cubical model ensures this equivalence is not just symbolic—it reduces to executable code manipulating integers. This synergy between syntax and semantics positions HoTT as both a foundational theory and a practical tool for formal mathematics.  
